@@ -12,10 +12,14 @@ namespace App\Core;
 class Config
 {
     private static $config = [
+        // App Configuration
         "debug" => true,
-        "app_name" => "Tiny MVC",
+        "app_name" => "Owais's Tiny MVC",
         "base_path" => "/",
-        "views_path" =>__DIR__."/../app/Views",
+
+
+
+        // database/Eloquent Configurations
         "db" => [
             "db_host" => "localhost",
             "db_name" => "mvc_database",
@@ -24,7 +28,25 @@ class Config
             "db_char" => "UTF8",
             "db_prefix" => ""
         ],
+
+
+        // TWIG Configurations
+        "twig" =>[
+            "views_path" =>__ROOT__ . "app/Views",
+
+            "options" =>[
+                'cache' => __ROOT__.'app/Views/cashedViews',
+            ],
+
+        ]
     ];
+
+
+
+
+
+
+
 
     public static function getConfig(){
         return self::$config;

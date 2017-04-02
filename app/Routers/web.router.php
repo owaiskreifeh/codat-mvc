@@ -14,4 +14,4 @@ $this->map('GET',"/user/[a:user]/[a:action]",function ($user,$action){
 });
 
 
-$this->map("GET","/hello/[a:user]","HomeController@index","home");
+$this->map("GET","/[a:user]","HomeController@index","home");

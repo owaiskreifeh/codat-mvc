@@ -1,13 +1,16 @@
 <?php
+$_SERVER['REQUEST_URI'] = "/owais";
 define("__ROOT__",__DIR__ . '/../');
 require __DIR__.'/../vendor/autoload.php';
 require __DIR__ . '/../app/Core/bootstrap.php';
 use App\Core\Config as Config;
 
 if (Config::getConfig()['debug']) {
+    $config = new Config();
+
     echo '<pre>';
     echo "PUBLIC DIR : " . __DIR__ . "<hr>";
-    echo "ROUTER => " . $_SERVER['REQUEST_URI'] ?? "err REQUEST_URI" ;
+    echo "ROUTER => " . ($_SERVER['REQUEST_URI'] ?? "err REQUEST_URI") ;
     echo '<hr>';
     echo '';
     ini_set('display_errors', 1);
