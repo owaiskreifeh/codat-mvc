@@ -14,7 +14,7 @@ class Config
     private static $config = [
         "debug" => true,
         "app_name" => "Tiny MVC",
-        "base_path" => __DIR__."/../public",
+        "base_path" => "/",
         "views_path" =>__DIR__."/../app/Views",
         "db" => [
             "db_host" => "localhost",

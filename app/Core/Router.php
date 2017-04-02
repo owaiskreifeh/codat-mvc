@@ -5,40 +5,73 @@
  * Date: 01/04/17
  * Time: 01:22 م
  */
-namespace App\Core;
-use App\Core\Config as Config;
 
+namespace App\Core;
 
 class Router extends \AltoRouter
 {
-    protected $basePath;
-    function __construct()
-    {
-        $config = new Config();
-        parent::setBasePath($config->base_path);
-        parent::__construct();
-    }
 
-    public function get($route,$callable){
-        self::map('GET',$route,$callable);
-    }
-    public function post($route,$callable){
-        self::map('POST',$route,$callable);
-    }
-    public function any($route,$callable){
-        self::map('GET|POST',$route,$callable);
-    }
+//    protected $controller = "HomeController";
+//    protected $action = "index";
+//    protected $params = [];
 
 
 
-    public function run(){
-        echo "Done in run";
-        $match = self::match();
-        if( $match && is_callable( $match['target'] ) ) {
-            call_user_func_array( $match['target'], $match['params'] );
-            echo "Done";
-        } else {
-            header( $_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
+    private function requireRoutersFiles(){
+        chdir(__ROOT__."app/Routers");
+        $routers = glob("*.router.php");
+        foreach ($routers as $router){
+            require $router;
+        }
+    }
+
+    private function explodeTarget($target){
+        //$target = "homeController@index"
+        return explode("@",$target);
+        //Array[0] : 'homeController'
+        //Array[1] : 'index'
+    }
+
+    private function callController($controller){
+        if (class_exists("App\\Controllers\\". $controller)){
+            $controller = "App\\Controllers\\". $controller;
+            return new $controller;
+        }
+        return false;
+    }
+
+    private function callMethod($controller,$method,$params){
+        if (is_callable([$controller,$method])){
+            $this->action = $method;
+            return call_user_func_array([
+                           $controller,
+                            $method],
+                            $params);
+        }
+        return false;
+    }
+    /*
+     *
+     *
+     * */
+    public  function run(){
+
+        $this->requireRoutersFiles();
+        $match = $this->match();
+        $targetParams = $this->explodeTarget($match['target']);
+        if ($match) {
+            if (!is_callable($match['target'])) {
+                $controller = $this->callController($targetParams[0]);
+                if ($controller){
+                    if($this->callMethod($controller,$targetParams[1],$match['params']));
+                }
+            }
+            else {
+                call_user_func_array($match['target'], $match['params']);
+            }
+        }
+        else {
+            echo "<strong>404</strong>";
         }
     }
 
