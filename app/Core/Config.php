@@ -21,12 +21,14 @@ class Config
 
         // database/Eloquent Configurations
         "db" => [
-            "db_host" => "localhost",
-            "db_name" => "mvc_database",
-            "db_user" => "root",
-            "db_password" => "",
-            "db_char" => "UTF8",
-            "db_prefix" => ""
+            "driver" => "mysql",
+            "host" => "localhost",
+            "database" => "test_owais_mvc",
+            "username" => "user",
+            "password" => "",
+            "charset" => "utf8",
+            "collation" => "utf8_unicode_ci",
+            "prefix" => ""
         ],
 
 

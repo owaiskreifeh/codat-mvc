@@ -55,7 +55,7 @@ class Router extends \AltoRouter
      *
      * */
     public  function run(){
-
+        $this->emailRegEX();
         $this->requireRoutersFiles();
         $match = $this->match();
         $targetParams = $this->explodeTarget($match['target']);
@@ -73,6 +73,11 @@ class Router extends \AltoRouter
         else {
             echo "<strong>404</strong>";
         }
+    }
+
+    private function emailRegEX(){
+        $this->addMatchTypes([
+            "e"=> '\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b' ]);
     }
 
 }

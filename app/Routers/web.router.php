@@ -13,5 +13,5 @@ $this->map('GET',"/user/[a:user]/[a:action]",function ($user,$action){
    print_r($action);
 });
 
-
 $this->map("GET","/[a:user]","HomeController@index","home");
+$this->map("GET","/create/[a:name]/[a:email]","HomeController@create",'create');
