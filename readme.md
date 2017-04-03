@@ -1,11 +1,11 @@
-# Owais tiny MVC
+# \<Codat\\> tiny MVC
 English / عربي
 ## About
 This is a Small Tiny PHP MVC structure, To help junior developers and web development students to understand this structure and how it works, using Composer as dependency manager and some open-source packages to make it more useable.
 
 ## Installing
 ```
-$ composer create-project owaismajid/owais-mvc [your-project-name] --prefer-dist
+$ composer create-project owaismajid/codat-mvc [your-project-name] --prefer-dist
 ```
 then run `$ composer update` to install required dependencies. And Done :)
 ## Run it ->
