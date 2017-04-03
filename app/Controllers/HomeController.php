@@ -17,6 +17,7 @@ class HomeController
     public function index($user){
 //        echo __ROOT__.'app/Views';
         $View = new View();
+
         $View->view("home.twig",[
            'username' => $user,
             'title' => Config::getConfig()['app_name']
@@ -25,6 +26,8 @@ class HomeController
 
     public function create($name,$email){
         $u = new User();
-       $u->create(['name'=>$name,'email'=>$email]);
+        $u->create(['name'=>$name,'email'=>$email]);
+        $View = new View();
+        $View->view("home.twig",['username'=>$name]);
     }
 }

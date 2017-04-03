@@ -7,10 +7,16 @@
  */
 
 
-$this->map('GET',"/user/[a:user]/[a:action]",function ($user,$action){
+use App\Core\Config;// Your Config
+use App\Core\View;
 
-   print_r($user);
-   print_r($action);
+$this->map('GET|POST',"/",function ($name=''){
+
+    $View = new View();
+    $View->view("home.twig",[
+        'title' => Config::getConfig()['app_name'],
+        'name' => $name
+    ]);
 });
 
 $this->map("GET","/[a:user]","HomeController@index","home");

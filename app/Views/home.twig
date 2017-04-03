@@ -8,7 +8,21 @@
     <title>{{ title }}</title>
 </head>
 <body>
-<h1> Hello World </h1>
-<h1>Hello {{ username }}</h1>
+<div style="text-align: center;">
+    <h1>Hello
+    {% if username|length > 1 %}
+        {{ username }}
+    {% else %}
+        World
+        {% endif %}
+    </h1>
+</div>
+<div style="text-align: center;">
+    Try <a href="/yourname">/yourname</a>
+    <form action="/" method="post">
+        <input type="text" name="name">
+        <button type="submit">Go!</button>
+    </form>
+</div>
 </body>
 </html>

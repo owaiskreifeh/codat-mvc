@@ -58,9 +58,9 @@ class Router extends \AltoRouter
         $this->emailRegEX();
         $this->requireRoutersFiles();
         $match = $this->match();
-        $targetParams = $this->explodeTarget($match['target']);
         if ($match) {
             if (!is_callable($match['target'])) {
+                $targetParams = $this->explodeTarget($match['target']);
                 $controller = $this->callController($targetParams[0]);
                 if ($controller){
                     if($this->callMethod($controller,$targetParams[1],$match['params']));

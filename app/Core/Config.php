@@ -37,7 +37,7 @@ class Config
             "views_path" =>__ROOT__ . "app/Views",
 
             "options" =>[
-                'cache' => __ROOT__.'app/Views/cashedViews',
+                //'cache' => __ROOT__.'app/Views/cashedViews',
             ],
 
         ]
